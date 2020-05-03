@@ -1,0 +1,52 @@
+.App-footer {
+    .PaginationComponent{
+        display: flex;
+        justify-content: center;
+        height: 32px;   
+        margin-top: 25px;
+
+       ul {
+            text-align: center; 
+            height: 100%;
+        }
+        
+        li:before {
+            content: '';
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+          }
+        li{
+            margin-right: 15px;
+            width: 40px;
+            background-position: center;
+            border: 1px solid #E5E5E5;   
+            cursor: pointer;
+            background: #F5F5F5 0% 0% no-repeat padding-box;
+            display: inline-block;
+            vertical-align: middle;
+            height: 100%;
+        }
+
+        .disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .active {
+            border: 1px solid #167ABC;
+            background: #167ABC 0% 0% no-repeat padding-box;
+            color: #fff;
+        }
+
+        .previous,.next {
+            background-color: transparent;
+            border: none;
+            font-weight: bold;
+        }
+
+        .break-me{
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.App-header {
+    height: 64px;
+    padding: 21px 24px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    .objective-img{
+      width: 96px;
+      height: 24px;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .candidate-info{
+      display: flex;
+      align-items: center;
+      .block-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .text-destac {
+          font: Bold 14px/20px PT Sans Caption;
+        }
+      }
+  
+      .info-cb{
+        margin-left: 15px;
+        width: 35px;
+        height: 32px;
+        background-color: #F5F5F5;
+        text-align: center;
+        border-radius: 4px;
+        font: Bold 15px/10px PT Sans Caption;
+        color: #555555;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+
+  @media (min-width: 800px) {
+    .App-header .candidate-info .block-text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+}
