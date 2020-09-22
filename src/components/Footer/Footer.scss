@@ -1,10 +1,10 @@
 .App-footer {
+    display: flex;
+    flex-direction: column;
     .PaginationComponent{
+        margin-top: 1rem;
         display: flex;
         justify-content: center;
-        height: 32px;   
-        margin-top: 25px;
-
        ul {
             text-align: center; 
             height: 100%;
@@ -47,6 +47,12 @@
 
         .break-me{
             display: none;
+        }
+    }
+    .attributions {
+        align-self: center;
+        @media (min-width: 800px) {
+            align-self: flex-end;
         }
     }
 }

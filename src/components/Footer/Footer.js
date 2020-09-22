@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 
 const Footer = props => {
 
-	const {  total , onPaginate } = useContext(AppContext);
+	const { total, onPaginate, attributions } = useContext(AppContext);
 	const [display, setDisplay] = useState(4);
 
 	useEffect(() => {
@@ -24,7 +24,7 @@ const Footer = props => {
 	return (
 		<footer className="App-footer">
 			<div className="PaginationComponent">
-				<ReactPaginate
+				{total > 1 && <ReactPaginate
 					previousLabel={'<'}
 					previousLinkClassName={"page-link"}
 					nextLabel={'>'}
@@ -42,7 +42,11 @@ const Footer = props => {
 					activeClassName={'active'}
 					disableInitialCallback
 					activeLinkClassName={"page-link"}
-				/>
+				/>}
+			</div>
+			<div className="attributions">
+				<div dangerouslySetInnerHTML={{__html: attributions.attributionHTML}}></div>
+				{attributions.attributionText}
 			</div>
 		</footer>
 	);

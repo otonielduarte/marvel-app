@@ -61,7 +61,7 @@ const CharacterComponent = ({ character = {}, active, handleClick }) => (
 				</div>
 			</div>
 			<div className="see-more">
-				{character.urls.map(url => <a href={url.url} target="_blank" rel="noopener noreferrer">{url.type}</a>)}
+				{character.urls.map((url, index) => <a key={`character-key-${index}`} href={url.url} target="_blank" rel="noopener noreferrer">{url.type}</a>)}
 			</div>
 
 		</div>

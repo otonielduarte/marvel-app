@@ -7,37 +7,45 @@ const AppContext = createContext({});
 export const AppProvider = ({ children }) => {
 
     const [characters, setCharacters] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [pageInfo, setPageInfo] = useState({ page: 1, total: 0 });
-    let textSearch = null;
+    const [attributions, setAttributions] = useState({});
+    const [textSearch, setText] = useState('');
 
-    const getList = async (page, name) => {
+    const setResponse = useCallback(resultData => {
+        setPageInfo({ page: resultData.data.offset, total: resultData.data.total });
+        setCharacters(resultData.data.results.map(character => new CharacterModel(character)));
+        setAttributions(() => {
+            return { attributionHTML: resultData.attributionHTML, attributionText: resultData.attributionText }
+        })
+    }, []);
+
+    const getList = useCallback(async (page, name) => {
         try {
+            setLoading(true);
             const response = await ApiUtil.get('/characters', page, name);
             if (response.data) {
-                const resultData = response.data.data;
+                const resultData = response.data;
                 setResponse(resultData);
             }
+            setLoading(false);
         } catch (e) {
             console.error(e);
         }
-    }
+    }, [setResponse])
 
-    const setResponse = useCallback((resultData) => {
-        setPageInfo({ page: resultData.offset, total: resultData.total });
-        setCharacters(resultData.results.map(character => new CharacterModel(character)));
-    }, [])
+    const onSearch = useCallback(text => {
+        const stringText = text ? text : null;
+        setText(stringText);
+        getList(0, stringText);
+    }, [getList])
 
-    const onSearch = (text) => {
-        textSearch = text ? text : null;
-        getList(0, textSearch);
-    }
-
-    const onPaginate = (page) => {
+    const onPaginate = useCallback((page) => {
         getList(page, textSearch);
-    }
+    }, [getList, textSearch])
 
     return (
-        <AppContext.Provider value={{ characters, onSearch, total: pageInfo.total, onPaginate }}>
+        <AppContext.Provider value={{ characters, onSearch, total: pageInfo.total, onPaginate, attributions, loading }}>
             {children}
         </AppContext.Provider>
     )

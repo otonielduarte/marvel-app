@@ -43,6 +43,13 @@
 			display: none;
 		}
 	}
+	.text-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 50px;
+		font: Bold 1rem PT Sans;
+	}
   }
 }
 @media (min-width: 800px) {

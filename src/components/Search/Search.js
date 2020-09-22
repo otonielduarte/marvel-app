@@ -1,23 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, memo, useContext } from 'react';
+import AppContext from '../../context/context';
 import './Search.scss';
 
-const Search = ({ onSearch }) => {
+const Search = (props) => {
 
 	const[text, setText] = useState('');
+	const { onSearch } = useContext(AppContext);
+
+	const handleSearch = useCallback(() => {
+		onSearch(text)
+	}, [text, onSearch])
 
 	useEffect(() => {
 		let searchTimer = setTimeout(() => {
-			onSearch(text);
+			handleSearch(text);
 		}, 500);
 		return () => clearTimeout(searchTimer);
-	}, [text]);
+	}, [text, handleSearch]);
 
 	return (
 		<div className="search-component">
 			<i className="fas fa-search"></i>
-			<input onChange={e => setText(e.target.value)} id="search" className="input-search" placeholder="Search"></input>
+			<input onChange={e => setText(e.target.value) } id="search" className="input-search" placeholder="Search"></input>
 		</div>
 	);
 }
 
-export default Search;
+export default memo(Search);
