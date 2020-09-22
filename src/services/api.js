@@ -6,12 +6,12 @@ const getParams = (page = 0, name = null) => {
     const ts = new Date().getTime();
     const hash = md5(ts + PRIVATE_KEY + apikey)
     return {
+        nameStartsWith: name,
         apikey,
         ts,
         hash,
         limit: 10,
         offset: page,
-        name
     }
 }
 

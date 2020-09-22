@@ -14,7 +14,7 @@ const Search = (props) => {
 	useEffect(() => {
 		let searchTimer = setTimeout(() => {
 			handleSearch(text);
-		}, 500);
+		}, 800);
 		return () => clearTimeout(searchTimer);
 	}, [text, handleSearch]);
 

@@ -37,7 +37,7 @@ export const AppProvider = ({ children }) => {
     const onSearch = useCallback(text => {
         const stringText = text ? text : null;
         setText(stringText);
-        getList(0, stringText);
+        getList(null, stringText);
     }, [getList])
 
     const onPaginate = useCallback((page) => {
