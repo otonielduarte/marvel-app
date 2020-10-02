@@ -1,19 +1,19 @@
-import React, { useState, useEffect, useCallback, memo, useContext } from 'react';
-import AppContext from '../../context/context';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { useCharacters } from '../../context/context';
 import './Search.scss';
 
 const Search = (props) => {
 
 	const[text, setText] = useState('');
-	const { onSearch } = useContext(AppContext);
+	const { dispatch } = useCharacters();
 
-	const handleSearch = useCallback(() => {
-		onSearch(text)
-	}, [text, onSearch])
+	const handleSearch = useCallback((string) => {
+		dispatch({ type: 'SEARCH', payload: string })
+	}, [dispatch])
 
 	useEffect(() => {
 		let searchTimer = setTimeout(() => {
-			handleSearch(text);
+			handleSearch(text)
 		}, 800);
 		return () => clearTimeout(searchTimer);
 	}, [text, handleSearch]);
@@ -21,7 +21,7 @@ const Search = (props) => {
 	return (
 		<div className="search-component">
 			<i className="fas fa-search"></i>
-			<input onChange={e => setText(e.target.value) } id="search" className="input-search" placeholder="Search"></input>
+			<input onChange={e => setText(e.target.value) } value={text} id="search" className="input-search" placeholder="Search"></input>
 		</div>
 	);
 }

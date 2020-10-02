@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react';
-import AppContext from '../../context/context';
+import  { useCharacters } from '../../context/context';
 import Character from '../Character';
 
 const List = (props) => {
     const [selected, setSelected] = useState(-1);
-    const { characters, loading } = useContext(AppContext);
+    const { state: { characters }, loading } = useCharacters();
 
     return loading ? <div className="text-center">Loading...</div> : characters.length > 1 ? characters.map((character, index) =>
         <Character
