@@ -1,15 +1,11 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Footer.scss';
-import { useCharacters } from '../../context/context';
 import ReactPaginate from 'react-paginate';
+import { useAppContext } from '../../context/context';
 
 const Footer = props => {
 
-	const {
-		state: { total, attributions },
-		dispatch,
-	} = useCharacters();
-
+	const { total, onPaginate, attributions } = useAppContext();
 	const [display, setDisplay] = useState(4);
 
 	useEffect(() => {
@@ -40,7 +36,7 @@ const Footer = props => {
 					pageCount={total}
 					marginPagesDisplayed={0}
 					pageRangeDisplayed={display}
-					onPageChange={item => dispatch({ type: 'PAGINATE', payload: item.selected })}
+					onPageChange={item => onPaginate(item.selected)}
 					subContainerClassName={"page-item"}
 					pageClassName={"page-item"}
 					activeClassName={'active'}

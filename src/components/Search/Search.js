@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useCallback, memo } from 'react';
-import { useCharacters } from '../../context/context';
+import { useAppContext } from '../../context/context';
 import './Search.scss';
 
 const Search = (props) => {
 
 	const[text, setText] = useState('');
-	const { dispatch } = useCharacters();
+	const { onSearch } = useAppContext();
 
 	const handleSearch = useCallback((string) => {
-		dispatch({ type: 'SEARCH', payload: string })
-	}, [dispatch])
+		onSearch(string);
+	}, [onSearch])
 
 	useEffect(() => {
 		let searchTimer = setTimeout(() => {
