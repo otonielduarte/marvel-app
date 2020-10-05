@@ -1,4 +1,4 @@
-import React, { useState, createContext, useCallback } from 'react';
+import React, { useState, createContext, useCallback, useContext } from 'react';
 import { ApiUtil } from '../services/api';
 import CharacterModel from '../models/CharacterModel';
 
@@ -12,27 +12,23 @@ export const AppProvider = ({ children }) => {
     const [attributions, setAttributions] = useState({});
     const [textSearch, setText] = useState('');
 
-    const setResponse = useCallback(resultData => {
-        setPageInfo({ page: resultData.data.offset, total: resultData.data.total });
-        setCharacters(resultData.data.results.map(character => new CharacterModel(character)));
-        setAttributions(() => {
-            return { attributionHTML: resultData.attributionHTML, attributionText: resultData.attributionText }
-        })
-    }, []);
-
     const getList = useCallback(async (page, name) => {
         try {
             setLoading(true);
             const response = await ApiUtil.get('/characters', page, name);
             if (response.data) {
                 const resultData = response.data;
-                setResponse(resultData);
+                setPageInfo({ page: resultData.data.offset, total: resultData.data.total });
+                setCharacters(resultData.data.results.map(character => new CharacterModel(character)));
+                setAttributions(() => {
+                    return { attributionHTML: resultData.attributionHTML, attributionText: resultData.attributionText }
+                })
             }
             setLoading(false);
         } catch (e) {
             console.error(e);
         }
-    }, [setResponse])
+    }, [setPageInfo, setLoading, setCharacters, setAttributions])
 
     const onSearch = useCallback(text => {
         const stringText = text ? text : null;
@@ -51,4 +47,12 @@ export const AppProvider = ({ children }) => {
     )
 }
 
-export default AppContext;
+export function useAppContext() {
+    const appContext = useContext(AppContext);
+
+    if(!appContext) {
+        throw new Error('appContext must be used within an AuthProvider ');
+    }
+
+    return appContext;
+}

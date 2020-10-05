@@ -1,11 +1,11 @@
-import React, { useContext, useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './Footer.scss';
-import AppContext from '../../context/context';
 import ReactPaginate from 'react-paginate';
+import { useAppContext } from '../../context/context';
 
 const Footer = props => {
 
-	const { total, onPaginate, attributions } = useContext(AppContext);
+	const { total, onPaginate, attributions } = useAppContext();
 	const [display, setDisplay] = useState(4);
 
 	useEffect(() => {

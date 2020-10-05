@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, memo, useContext } from 'react';
-import AppContext from '../../context/context';
+import React, { useState, useEffect, useCallback, memo } from 'react';
+import { useAppContext } from '../../context/context';
 import './Search.scss';
 
 const Search = (props) => {
 
 	const[text, setText] = useState('');
-	const { onSearch } = useContext(AppContext);
+	const { onSearch } = useAppContext();
 
 	const handleSearch = useCallback(() => {
 		onSearch(text)
