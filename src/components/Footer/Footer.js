@@ -5,7 +5,7 @@ import { useAppContext } from '../../context/context';
 
 const Footer = props => {
 
-	const { total, onPaginate, attributions } = useAppContext();
+	const { pageInfo: { total, page }, onPaginate, attributions } = useAppContext();
 	const [display, setDisplay] = useState(4);
 
 	useEffect(() => {
@@ -29,7 +29,7 @@ const Footer = props => {
 					previousLinkClassName={"page-link"}
 					nextLabel={'>'}
 					nextLinkClassName={"page-link"}
-					initialPage={0}
+					initialPage={page}
 					breakClassName={'break-me'}
 					breakLinkClassName={"page-link"}
 					pageLinkClassName={"page-link"}
@@ -37,7 +37,6 @@ const Footer = props => {
 					marginPagesDisplayed={0}
 					pageRangeDisplayed={display}
 					onPageChange={item => onPaginate(item.selected)}
-					subContainerClassName={"page-item"}
 					pageClassName={"page-item"}
 					activeClassName={'active'}
 					disableInitialCallback

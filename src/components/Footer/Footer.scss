@@ -5,19 +5,24 @@
         margin-top: 1rem;
         display: flex;
         justify-content: center;
+
        ul {
             text-align: center; 
             height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            @media (min-width: 800px) {
+                width: 30%;
+            }
         }
         
         li:before {
             content: '';
-            display: inline-block;
-            vertical-align: middle;
             height: 100%;
-          }
+        }
         li{
-            margin-right: 15px;
             width: 40px;
             background-position: center;
             border: 1px solid #E5E5E5;   
@@ -26,6 +31,11 @@
             display: inline-block;
             vertical-align: middle;
             height: 100%;
+
+            .page-link{
+                display: block;
+                width: 100%;
+            }
         }
 
         .disabled {
