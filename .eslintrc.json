@@ -1,52 +1,70 @@
 {
   "env": {
-    "es2020": true,
-    "node": true,
+    "browser": true,
+    "es6": true,
     "jest": true
   },
   "extends": [
-    "airbnb-base",
+    "plugin:react/recommended",
+    "airbnb",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
   "plugins": [
+    "react",
     "@typescript-eslint",
+    "react-hooks",
     "prettier"
   ],
   "rules": {
-    "prettier/prettier": "error",
-    "class-methods-use-this": "off",
     "camelcase": "off",
-    "no-useless-constructor": "off",
-    "@typescript-eslint/naming-convention": [
-      "error",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "no-unused-expressions": "off",
+    "react/jsx-filename-extension": [
+      1,
       {
-        "selector": "interface",
-        "prefix": [
-          "I"
-        ],
-        "format": [
-          "PascalCase"
+        "extensions": [
+          ".tsx"
         ]
       }
     ],
-    "@typescript-eslint/no-unused-vars": [
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/ban-types": [
       "error",
       {
-        "argsIgnorePattern": "_"
+        "types": {
+          "object": false
+        },
+        "extendDefaults": true
       }
     ],
+    "no-use-before-define": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-static-element-interactions": "off",
+    "prettier/prettier": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "ts": "never"
+        "ts": "never",
+        "tsx": "never"
       }
     ]
   },

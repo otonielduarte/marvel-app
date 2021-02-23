@@ -1,6 +1,6 @@
-export default function debounce(func, wait) {
+export default function debounce<>(func, wait) {
   let timeout;
-  return function(...args) {
+  return function (...args) {
     const context = this;
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(() => {

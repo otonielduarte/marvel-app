@@ -5,20 +5,18 @@ import Main from './components/Main';
 import Footer from './components/Footer';
 import { AppProvider } from './context/context';
 
-function App() {
-	return (
-		<div className="App">
-			<AppProvider>
-				<AppHeader />
+const App: React.FC = () => {
+  return (
+    <div className="App">
+      <AppProvider>
+        <AppHeader />
 
-				<Main />
+        <Main />
 
-				<Footer />
-				
-			</AppProvider>
-
-		</div>
-	);
-}
+        <Footer />
+      </AppProvider>
+    </div>
+  );
+};
 
 export default App;
