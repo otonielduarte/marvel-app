@@ -5,10 +5,10 @@ const getParams = (page = 0, name = null) => {
     const PRIVATE_KEY = process.env.PRIVATE_KEY;
     const PUBLIC_KEY = process.env.PUBLIC_KEY;
     const ts = new Date().getTime();
-    const hash = md5(ts + PRIVATE_KEY + apikey)
+    const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
     return {
         nameStartsWith: name,
-        apikey,
+        apikey: PUBLIC_KEY,
         ts,
         hash,
         limit: 10,
@@ -22,12 +22,6 @@ export class ApiUtil {
     }
 }
 
-const api = Axios.create({ baseURL: process.env.URL_API });
-api.interceptors.request.use(config => {
-    config.headers = {
-        'Accept': '*/*'
-    };
-    return config;
-},
-    error => Promise.reject(error)
-);
+const api = Axios.create({ baseURL: process.env.URL_API, headers: {
+    'Accept': '*/*'
+}  });
