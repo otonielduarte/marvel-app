@@ -1,24 +1,30 @@
 .search-component{
   position: relative;
-  width: 100%;
+  width: 295px;
   display: flex;
+  justify-content: center;
 
   i{
     position: absolute;
-    left: 285px;
-    top: 15px;
+    right: 17px;
+    top: 10px;
     color: #555555;
   }
+
   .input-search{
     width: 100%;
-    padding: 8px 15px;
     height: 32px;
-    max-width: 295px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #E5E5E5;
     border-radius: 4px;
     &:placeholder-shown{
       font-style: italic;
     }
+  }
+}
+
+@media (min-width: 800px) {
+  .search-component {
+    width: 450px;
   }
 }

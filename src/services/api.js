@@ -1,27 +1,28 @@
 import Axios from "axios";
 import md5 from "md5";
 
-const getParams = (page = 0, name = null) => {
-    const PRIVATE_KEY = process.env.PRIVATE_KEY;
-    const PUBLIC_KEY = process.env.PUBLIC_KEY;
+export const api = {
+  async get(endpoint, page, name) {
+    const PRIVATE_KEY = process.env.REACT_APP_PRIVATE_KEY;
+    const PUBLIC_KEY = process.env.REACT_APP_PUBLIC_KEY;
     const ts = new Date().getTime();
     const hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY)
-    return {
+    return await baseApi.get(endpoint, {
+      params: {
         nameStartsWith: name,
         apikey: PUBLIC_KEY,
         ts,
         hash,
         limit: 10,
         offset: page,
-    }
+      }
+    });
+  }
 }
 
-export class ApiUtil {
-    static async get(endpoint, page, name) {
-        return await api.get(endpoint, { params: getParams(page, name) });
-    }
-}
-
-const api = Axios.create({ baseURL: process.env.URL_API, headers: {
+const baseApi = Axios.create({
+  baseURL: process.env.REACT_APP_URL_API,
+  headers: {
     'Accept': '*/*'
-}  });
+  }
+});

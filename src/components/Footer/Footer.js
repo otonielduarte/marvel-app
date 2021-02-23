@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './Footer.scss';
 import ReactPaginate from 'react-paginate';
-import { useAppContext } from '../../context/context';
+import { useSearch } from '../../context/context';
 
 const Footer = props => {
 
-	const { pageInfo: { total, page }, onPaginate, attributions } = useAppContext();
+	const { pageInfo: { total, page }, onPaginate, attributions } = useSearch();
 	const [display, setDisplay] = useState(4);
-
-	useEffect(() => {
-		window.addEventListener('resize', updateSize);
-		updateSize();
-	})
 
 	const updateSize = useCallback(() => {
 		if (window.innerWidth < 800) {
@@ -20,6 +15,11 @@ const Footer = props => {
 			setDisplay(4);
 		}
 	}, [])
+
+  useEffect(() => {
+		window.addEventListener('resize', updateSize);
+    return (() => window.removeEventListener('resize'))
+	}, [updateSize])
 
 	return (
 		<footer className="App-footer">

@@ -1,30 +1,31 @@
 import React from 'react';
 import './Main.scss';
-import Search from '../Search'
+import SearchBar from '../SearchBar'
 import List from '../List'
 
-const Main = props => {
+const Main = props => (
+  <main className="App-main">
+    <div className="container">
 
-	return (
-		<main className="App-main">
-			<section className="container">
-				<header >
-					<h1 className="title">Busca de personagens</h1>
-					<p>Nome do personagem</p>
-					<Search  />
-				</header>
-				
-				<div className="header-character">
-					<p className="head-1">Personagem</p>
-					<p className="head-2">Séries</p>
-					<p className="head-3">Eventos</p>
-				</div>
+      <header >
+        <h1 className="title">Busca de personagens</h1>
+        <p>Nome do personagem</p>
 
-				<List/>
+        <SearchBar />
 
-			</section>
-		</main>
-	);
-}
+        <div className="header-character">
+          <p className="head-1">Personagem</p>
+          <p className="head-2">Séries</p>
+          <p className="head-3">Eventos</p>
+        </div>
+
+      </header>
+
+      <List />
+
+    </div>
+  </main>
+);
+
 
 export default Main;

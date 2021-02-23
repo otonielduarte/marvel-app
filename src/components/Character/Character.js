@@ -2,10 +2,10 @@ import React from 'react';
 import './Character.scss'
 
 const CharacterComponent = ({ character = {}, active, handleClick }) => (
-	<div className="CharacterComponent">
+	<section className="CharacterComponent">
 		<header className="accordion" onClick={handleClick}>
 			<div className="capsule">
-				<img src={character.thumbnail.default} alt='character'></img>
+				<img src={character.thumbnail.default} alt={character.name}></img>
 			</div>
 			<div className="block-1">
 				<p className="character-name">{character.name}</p>
@@ -27,7 +27,7 @@ const CharacterComponent = ({ character = {}, active, handleClick }) => (
 		</header>
 		<div className={`panel ${active ? 'active' : ''}`}>
 			<div className="capsule">
-				<img src={character.thumbnail.xLarge} alt='character'></img>
+				<img src={character.thumbnail.xLarge} alt={character.name}></img>
 			</div>
 			<p className="text-name">{character.name}</p>
 			<div className="content">
@@ -65,7 +65,7 @@ const CharacterComponent = ({ character = {}, active, handleClick }) => (
 			</div>
 
 		</div>
-	</div>
+	</section>
 );
 
 

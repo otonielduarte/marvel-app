@@ -1,5 +1,5 @@
-import React, { useState, createContext, useCallback, useContext } from 'react';
-import { ApiUtil } from '../services/api';
+import React, { useState, createContext, useCallback, useContext, useMemo, useRef } from 'react';
+import { api } from '../services/api';
 import CharacterModel from '../models/CharacterModel';
 
 
@@ -7,54 +7,53 @@ const AppContext = createContext({});
 
 export const AppProvider = ({ children }) => {
 
-    const [characters, setCharacters] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [pageInfo, setPageInfo] = useState({ page: 1, total: 0 });
-    const [attributions, setAttributions] = useState({});
-    const [textSearch, setText] = useState('');
+  let textSearch = useRef(null);
+  const [loading, setLoading] = useState(false);
+  const [values, setValues] = useState({});
 
-    const getList = useCallback(async (page, name) => {
-        try {
-            setLoading(true);
-            const response = await ApiUtil.get('/characters', page, name);
-            if (response.data) {
-                const resultData = response.data;
-                setPageInfo({ page: resultData.data.offset, total: resultData.data.total });
-                setCharacters(resultData.data.results.map(character => new CharacterModel(character)));
-                setAttributions(() => {
-                    return { attributionHTML: resultData.attributionHTML, attributionText: resultData.attributionText }
-                })
-            }
-            setLoading(false);
-        } catch (e) {
-            console.error(e);
-        }
-    }, [setPageInfo, setLoading, setCharacters, setAttributions])
+  const getList = useCallback((page = 0, searchValue = null) => {
+    setLoading(true)
+    api.get('/characters', page, searchValue).then(response => {
+      textSearch.current = searchValue;
+      setValues(response.data);
+    }).finally(() => setLoading(false));
+  }, [setValues])
 
-    const onSearch = useCallback(text => {
-        const stringText = text ? text : null;
-        setText(stringText);
-        getList(null, stringText);
-    }, [getList])
+  const onSearch = useCallback(text => {
+    const stringText = text ? text : null;
+    getList(0, stringText)
+  }, [getList])
 
-    const onPaginate = useCallback((page) => {
-        getList(page, textSearch);
-    }, [getList, textSearch])
-   
+  const onPaginate = useCallback((page) => {
+    getList(page, textSearch.current);
+  }, [getList, textSearch])
 
-    return (
-        <AppContext.Provider value={{ onSearch, onPaginate, attributions, characters, loading, pageInfo }}>
-            {children}
-        </AppContext.Provider>
-    )
+  const characters = useMemo(() => {
+    if (!values.data) return [];
+    const { data } = values;
+    return data.results.map(character => new CharacterModel(character))
+  }, [values])
+
+  const pageInfo = useMemo(() => {
+    if (!values.data) return [];
+    const { data } = values;
+    return { page: data.offset, total: data.total }
+  }, [values])
+
+  const attributions = useMemo(() => {
+    const { attributionHTML, attributionText } = values;
+    return { attributionHTML, attributionText };
+  }, [values])
+
+  return (
+    <AppContext.Provider
+      value={{ onSearch, onPaginate, attributions, characters, pageInfo, loading }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
-export function useAppContext() {
-    const appContext = useContext(AppContext);
-
-    if(!appContext) {
-        throw new Error('appContext must be used within an AuthProvider ');
-    }
-
-    return appContext;
+export function useSearch() {
+  const appContext = useContext(AppContext);
+  return appContext;
 }
