@@ -1,8 +1,9 @@
-import { URL_API, PRIVATE_KEY, PUBLIC_KEY as apikey } from "../util/Constants";
 import Axios from "axios";
 import md5 from "md5";
 
 const getParams = (page = 0, name = null) => {
+    const PRIVATE_KEY = process.env.PRIVATE_KEY;
+    const PUBLIC_KEY = process.env.PUBLIC_KEY;
     const ts = new Date().getTime();
     const hash = md5(ts + PRIVATE_KEY + apikey)
     return {
@@ -21,7 +22,7 @@ export class ApiUtil {
     }
 }
 
-const api = Axios.create({ baseURL: URL_API });
+const api = Axios.create({ baseURL: process.env.URL_API });
 api.interceptors.request.use(config => {
     config.headers = {
         'Accept': '*/*'
