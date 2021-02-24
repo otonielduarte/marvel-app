@@ -1,6 +1,6 @@
 # Marvel App
 
-> This is a SPA created from CRA, with the minimal external libraries;
+> This is a SPA created from CRA, with the minimal external libraries; you can see this application in live [here](https://marvel-app-725314.netlify.app)
 
 ## Setup
 
