@@ -11,6 +11,7 @@ services:
       - REACT_APP_PUBLIC_KEY:${REACT_APP_PUBLIC_KEY}
       - REACT_APP_PRIVATE_KEY:${REACT_APP_PRIVATE_KEY}
       - REACT_APP_URL_API:${REACT_APP_URL_API}
+      - SKIP_PREFLIGHT_CHECK:true
     volumes:
       - .:/app
 
