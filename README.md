@@ -1,25 +1,50 @@
 # Marvel App
 
-## Resumo
-- O projeto é um SPA (Single Page Application) criado apartir de um CRA, fazendo uso do mínimo de bibliotecas externas;
-- Consome a API da marvel(https://developer.marvel.com/);
-    
-## Funcionalidades:
-- Exibe uma lista de personagens (10 por página);
-- Buscas de personagens por nome;
-- Mostra um breve detalhe do personagem;
+> This is a SPA created from CRA, with the minimal external libraries;
 
-## Tecnologias:
-    - Language: Javascript (ReactJS);
-    - SASS;
- 
 ## Setup
-Assim que você fizer o download do projeto no git, para ele funcionar.
 
-- No terminal vá até a pasta do projeto: `cd marvelApp`
-- Digite no terminal `npm i` ou `yarn` para instalar todas as dependências;
-- Vamos rodar o projeto, digite `npm start` ou `yarn start` para rodar local;
+After you clone this project, the requirements to run this application is:
 
-## Idéia e ideal
-- Utilizar sempre boas práticas;
-- Código limpo e legível;
+- [`Docker`](https://docs.docker.com/engine/install/ubuntu/) and [`Docker compose`](https://docs.docker.com/compose/install/):
+
+```sh
+docker-compose run --rm install
+docker-compose up app
+```
+
+... or can you use without docker, with `npm` or `yarn`:
+
+```sh
+npm install
+npm start
+```
+
+or
+
+```sh
+yarn install
+yarn start
+```
+
+> Important, to run in local mode, you need to get `PUBLIC_KEY` and `PRIVATE_KEY` in [Marvel Developers](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount),  and after insert values in `docker` or `docker-compose` environments, or `.env` file.
+## API
+
+- [Marel API](https://developer.marvel.com/);
+
+## Functionalities
+
+- Show characters list (10 characters per page)
+- Search characters by start name:
+- And you can view small character details
+
+## Tecnologias
+
+- Language: Typescript
+- SASS;
+
+## Ideia and ideal
+
+- Use the best practices;
+- Clean code;
+- Easy legibility;
