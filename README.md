@@ -13,7 +13,7 @@ docker-compose run --rm install
 docker-compose up app
 ```
 
-... or can you use without docker, with `npm` or `yarn`:
+or can you use without docker, with `npm` or `yarn`:
 
 ```sh
 npm install
@@ -39,7 +39,7 @@ yarn start
 - Search characters by start name:
 - And you can view small character details
 
-## Tecnologias
+## Tecnologies
 
 - Language: Typescript
 - SASS;
