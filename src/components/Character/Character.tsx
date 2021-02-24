@@ -37,14 +37,14 @@ const CharacterComponent: React.FC<CharacterProps> = ({
           {character.series.items
             .filter((item, index) => index < 3)
             .map(serie => (
-              <small key={`serie_${serie.name}`}>{serie.name}</small>
+              <small key={`serie_${JSON.stringify(serie)}`}>{serie.name}</small>
             ))}
         </div>
         <div className="block-3">
           {character.events.items
             .filter((item, index) => index < 3)
             .map(event => (
-              <small key={`event_${event.name}`}>{event.name}</small>
+              <small key={`event_${JSON.stringify(event)}`}>{event.name}</small>
             ))}
         </div>
       </header>
@@ -57,32 +57,38 @@ const CharacterComponent: React.FC<CharacterProps> = ({
           <div className="block-1">
             Stories
             {character.stories.items.map(storie => (
-              <small key={`storie${storie.name}`}>{storie.name}</small>
+              <small key={`ac_storie${JSON.stringify(storie)}`}>
+                {storie.name}
+              </small>
             ))}
           </div>
           <div className="block-2">
             Series
             {character.series.items.map(serie => (
-              <small key={`serie_${serie.name}`}>{serie.name}</small>
+              <small key={`ac_serie_${JSON.stringify(serie)}`}>
+                {serie.name}
+              </small>
             ))}
           </div>
           <div className="block-3">
             Events
             {character.events.items.map(event => (
-              <small key={`event_${event.name}`}>{event.name}</small>
+              <small key={`ac_event_${JSON.stringify(event)}`}>
+                {event.name}
+              </small>
             ))}
           </div>
           <div className="block-4">
             Events
             {character.comics.items.map(comic => (
-              <small key={`comic_${comic.name}`}>{comic.name}</small>
+              <small key={`comic_${JSON.stringify(comic)}`}>{comic.name}</small>
             ))}
           </div>
         </div>
         <div className="see-more">
           {character.urls.map(url => (
             <a
-              key={`character-key-${url.url}`}
+              key={`character-key-${url.url}${url.type}`}
               href={url.url}
               target="_blank"
               rel="noopener noreferrer"

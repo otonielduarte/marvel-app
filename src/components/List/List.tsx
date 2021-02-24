@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { useSearch } from '../../context/context';
+import { useSearch } from '../../hooks/search';
 import Character from '../Character';
 
 const List: React.FC = () => {
@@ -27,7 +27,7 @@ const List: React.FC = () => {
           handleClick={() => handleClick(index)}
           active={index === selected}
           character={character}
-          key={`character${character.name}`}
+          key={`character${character.id}`}
         />
       ))}
     </>

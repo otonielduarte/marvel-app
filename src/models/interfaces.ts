@@ -4,14 +4,13 @@ export interface PayloadApi {
     offset: string;
     total: string;
   };
-  attributionHTML: string;
   attributionText: string;
 }
 
 export interface AppContextProps {
   onSearch(textSearch: string): void;
   onPaginate(page: number): void;
-  attributions: { attributionHTML: string; attributionText: string };
+  attributionText: string;
   characters: Character[];
   pageInfo: { page: string; total: string };
   loading: boolean;
@@ -40,6 +39,7 @@ interface Details {
 
 interface Item {
   name: string;
+  type: string;
 }
 
 interface Url {

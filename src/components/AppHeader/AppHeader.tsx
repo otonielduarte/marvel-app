@@ -23,8 +23,4 @@ const AppHeader: React.FC<HeaderProps> = ({ name }) => (
   </header>
 );
 
-AppHeader.defaultProps = {
-  name: 'Otoniel Moreira Duarte',
-};
-
 export default AppHeader;

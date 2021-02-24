@@ -1,9 +1,11 @@
 import React from 'react';
-import './styles/App.scss';
+
 import AppHeader from './components/AppHeader';
 import Main from './components/Main';
 import Footer from './components/Footer';
-import { AppProvider } from './context/context';
+import { AppProvider } from './hooks/search';
+
+import './styles/App.scss';
 
 const App: React.FC = () => {
   return (

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './Footer.scss';
 import ReactPaginate from 'react-paginate';
-import { useSearch } from '../../context/context';
+import { useSearch } from '../../hooks/search';
 
 const Footer: React.FC = () => {
-  const { pageInfo, onPaginate, attributions } = useSearch();
+  const { pageInfo, onPaginate, attributionText } = useSearch();
   const [display, setDisplay] = useState(4);
 
   const updateSize = useCallback(() => {
@@ -53,11 +53,7 @@ const Footer: React.FC = () => {
         )}
       </div>
       <div className="attributions">
-        <div
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: attributions.attributionHTML }}
-        />
-        {attributions.attributionText}
+        <a href="http://marvel.com"> {attributionText}</a>
       </div>
     </footer>
   );

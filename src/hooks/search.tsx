@@ -71,9 +71,8 @@ export const AppProvider: React.FC = ({ children }) => {
     return { page: data?.offset, total: data?.total };
   }, [values]);
 
-  const attributions = useMemo(() => {
-    const { attributionHTML, attributionText } = values;
-    return { attributionHTML, attributionText };
+  const attributionText = useMemo(() => {
+    return values.attributionText;
   }, [values]);
 
   return (
@@ -81,7 +80,7 @@ export const AppProvider: React.FC = ({ children }) => {
       value={{
         onSearch,
         onPaginate,
-        attributions,
+        attributionText,
         characters,
         pageInfo,
         loading,

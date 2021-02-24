@@ -38,7 +38,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint --fix --ext .js,.jsx .",
+    "lint": "eslint --fix --ext .ts,.tsx .",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
