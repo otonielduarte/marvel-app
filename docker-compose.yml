@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  install: &base
+    build:
+      context: .
+      target: install
+    working_dir: /app/
+    command: yarn
+    environment:
+      - REACT_APP_PUBLIC_KEY:${REACT_APP_PUBLIC_KEY}
+      - REACT_APP_PRIVATE_KEY:${REACT_APP_PRIVATE_KEY}
+      - REACT_APP_URL_API:${REACT_APP_URL_API}
+    volumes:
+      - .:/app
+
+  app:
+    <<: *base
+    command: "yarn start"
+    ports:
+      - 3000:3000
