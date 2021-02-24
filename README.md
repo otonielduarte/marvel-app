@@ -27,7 +27,7 @@ yarn install
 yarn start
 ```
 
-> Important, to run in local mode, you need to get `PUBLIC_KEY` and `PRIVATE_KEY` in [Marvel Developers](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount),  and after rename `.env-example` to `.env` e insert the keys into file.
+> Important, to run in local mode, you need to get `PUBLIC_KEY` and `PRIVATE_KEY` in [Marvel Developers](https://www.marvel.com/signin?referer=https%3A%2F%2Fdeveloper.marvel.com%2Faccount), rename `.env.example` to `.env` e insert the keys in the file.
 
 ## API
 
