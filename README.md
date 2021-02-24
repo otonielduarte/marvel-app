@@ -31,7 +31,7 @@ yarn start
 
 ## API
 
-- [Marel API](https://developer.marvel.com/);
+- [Marvel API](https://developer.marvel.com/);
 
 ## Functionalities
 
